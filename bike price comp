@@ -1,0 +1,39 @@
+% ----- Facts -----
+% bike(Model, Brand, Price).
+bike(shine, honda, 80000).
+bike(splendor, hero, 75000).
+bike(pulsar, bajaj, 95000).
+bike(fz, yamaha, 110000).
+bike(royal_enfield, bullet, 180000).
+
+% ----- Rules -----
+
+% Get price of a bike
+price(Model, Price) :- bike(Model, _, Price).
+
+% Compare two bikes - cheaper one
+cheaper(Bike1, Bike2, Cheaper) :-
+    price(Bike1, P1),
+    price(Bike2, P2),
+    (P1 < P2 -> Cheaper = Bike1 ; Cheaper = Bike2).
+
+% Check if Bike1 is cheaper than Bike2
+is_cheaper(Bike1, Bike2) :-
+    price(Bike1, P1),
+    price(Bike2, P2),
+    P1 < P2.
+
+% Find all bikes cheaper than given price
+cheaper_than(Amount, Model) :-
+    price(Model, P),
+    P < Amount.
+
+% Find the costliest bike
+costliest(Bike) :-
+    price(Bike, Price),
+    \+ (price(_, P2), P2 > Price).
+
+% Find the cheapest bike
+cheapest(Bike) :-
+    price(Bike, Price),
+    \+ (price(_, P2), P2 < Price).
