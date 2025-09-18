@@ -1,0 +1,18 @@
+% ----- Calculator Rules -----
+
+% addition
+calculate(add, X, Y, Result) :- 
+    Result is X + Y.
+
+% subtraction
+calculate(sub, X, Y, Result) :- 
+    Result is X - Y.
+
+% multiplication
+calculate(mul, X, Y, Result) :- 
+    Result is X * Y.
+
+% division (check denominator not zero)
+calculate(div, X, Y, Result) :- 
+    Y \= 0, 
+    Result is X / Y.
